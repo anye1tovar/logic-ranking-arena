@@ -1,0 +1,11 @@
+@mixin panel-surface {
+  background: linear-gradient(180deg, rgba(58, 35, 96, 0.92), rgba(31, 18, 55, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: $shadow-panel;
+  backdrop-filter: blur(18px);
+}
+
+@mixin neon-border($color, $alpha: 0.28) {
+  border: 1px solid rgba($color, $alpha);
+  box-shadow: 0 0 0 1px rgba($color, 0.1), 0 0 24px rgba($color, 0.16);
+}

@@ -1,0 +1,128 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(50, 28, 85, 0.92), rgba(29, 18, 49, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.topCard {
+  transform-origin: center;
+}
+
+.rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 62px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.body {
+  min-width: 0;
+}
+
+.name {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.playerName {
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-weight: 700;
+}
+
+.subline {
+  margin-top: 6px;
+  color: #cabcf4;
+  font-size: 0.98rem;
+}
+
+.scoreboard {
+  text-align: right;
+}
+
+.points {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 0.95;
+}
+
+.pointsLabel {
+  margin-top: 6px;
+  color: #cabcf4;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+}
+
+.statusActive {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.statusClassified {
+  border-color: rgba(183, 255, 0, 0.45);
+  box-shadow: 0 0 0 1px rgba(183, 255, 0, 0.1), 0 0 24px rgba(183, 255, 0, 0.16);
+}
+
+.statusEliminated {
+  opacity: 0.46;
+  filter: grayscale(1) saturate(0.75);
+  transform: scale(0.992);
+}
+
+.statusChampion {
+  border-color: rgba(244, 197, 66, 0.56);
+  box-shadow: 0 0 0 1px rgba(244, 197, 66, 0.18), 0 0 32px rgba(244, 197, 66, 0.24);
+  animation: pulseGlow 2.4s ease-in-out infinite;
+}
+
+.topCard.statusChampion,
+.topCard.statusClassified {
+  transform: scale(1.015);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.flashes {
+  pointer-events: none;
+  position: absolute;
+  right: 24px;
+  top: 12px;
+}
+
+.floating {
+  position: absolute;
+  right: 0;
+  color: #f4c542;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.2rem;
+  text-shadow: 0 0 20px rgba(244, 197, 66, 0.4);
+}
+
+@media (max-width: 880px) {
+  .card {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .scoreboard {
+    grid-column: 2;
+    text-align: left;
+  }
+}

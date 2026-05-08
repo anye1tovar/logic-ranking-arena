@@ -1,0 +1,21 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(340px, 420px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.sticky {
+  position: sticky;
+  top: 24px;
+}
+
+@media (max-width: 1120px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sticky {
+    position: static;
+  }
+}

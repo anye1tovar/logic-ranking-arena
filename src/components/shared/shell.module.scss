@@ -1,0 +1,39 @@
+.pageShell {
+  position: relative;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+.pageShell::before,
+.pageShell::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  width: 28vw;
+  height: 28vw;
+  border-radius: 999px;
+  filter: blur(20px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.pageShell::before {
+  top: -10vw;
+  left: -6vw;
+  background: radial-gradient(circle, rgba(183, 255, 0, 0.32), transparent 62%);
+  animation: drift 12s ease-in-out infinite;
+}
+
+.pageShell::after {
+  right: -8vw;
+  bottom: -12vw;
+  background: radial-gradient(circle, rgba(244, 197, 66, 0.26), transparent 62%);
+  animation: drift 15s ease-in-out infinite reverse;
+}
+
+.contentGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 24px;
+}

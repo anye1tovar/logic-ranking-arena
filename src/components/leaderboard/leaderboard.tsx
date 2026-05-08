@@ -1,0 +1,42 @@
+import { Typography } from "@mui/material";
+
+import type { Player } from "../../types/ranking";
+import { PlayerCard } from "../player-card/player-card";
+import styles from "./leaderboard.module.scss";
+
+type Props = {
+  players: Player[];
+  admin?: boolean;
+  onAddPoint?: (id: string, delta: number) => void;
+  onAddWin?: (id: string) => void;
+  onSetStatus?: (id: string, status: Player["status"]) => void;
+  onRemove?: (id: string) => void;
+};
+
+export const Leaderboard = (props: Props) => {
+  if (props.players.length === 0) {
+    return (
+      <div className={styles.emptyState}>
+        <Typography variant="h6">Todavía no hay jugadores en la arena</Typography>
+        <Typography>Agrega participantes desde el panel admin para empezar el ranking.</Typography>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.leaderboard}>
+      {props.players.map((player, index) => (
+        <PlayerCard
+          key={player.id}
+          player={player}
+          rank={index}
+          admin={props.admin}
+          onAddPoint={props.onAddPoint}
+          onAddWin={props.onAddWin}
+          onSetStatus={props.onSetStatus}
+          onRemove={props.onRemove}
+        />
+      ))}
+    </div>
+  );
+};

@@ -1,0 +1,20 @@
+.viewerShell {
+  min-height: 100vh;
+  padding: 28px;
+}
+
+.viewerGrid {
+  display: grid;
+  gap: 22px;
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
+
+.viewerHint {
+  justify-self: start;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cabcf4;
+  font-size: 0.95rem;
+}

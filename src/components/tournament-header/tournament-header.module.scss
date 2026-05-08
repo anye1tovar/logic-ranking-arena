@@ -1,0 +1,55 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    linear-gradient(120deg, rgba(244, 197, 66, 0.14), transparent 42%),
+    linear-gradient(180deg, rgba(53, 31, 92, 0.92), rgba(30, 18, 48, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 24px 90px rgba(9, 5, 20, 0.55);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  inset: auto -40px -48px auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(183, 255, 0, 0.18), transparent 68%);
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: #b7ff00;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.title {
+  max-width: 14ch;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+  line-height: 0.98;
+}
+
+.subtitle {
+  margin-top: 12px;
+  max-width: 64ch;
+  font-size: 1.1rem;
+  color: #cabcf4;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
