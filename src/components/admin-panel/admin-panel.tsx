@@ -31,6 +31,14 @@ export const AdminPanel = ({
     setSubtitle(event.subtitle ?? "");
   }, [event.subtitle, event.title]);
 
+  const submitPlayer = () => {
+    const normalizedName = playerName.trim();
+    if (!normalizedName) return;
+
+    onAddPlayer({ name: normalizedName });
+    setPlayerName("");
+  };
+
   return (
     <Paper className={styles.panel}>
       <Typography className={styles.panelTitle} variant="h4">
@@ -51,28 +59,25 @@ export const AdminPanel = ({
         </div>
         <div className={styles.row}>
           <Typography variant="h6">Agregar jugador</Typography>
-          <div className={styles.split}>
+          <div
+            className={styles.split}
+            onKeyDown={(event) => {
+              if (event.key !== "Enter") return;
+              event.preventDefault();
+              submitPlayer();
+            }}
+          >
             <TextField
               label="Nombre"
               value={playerName}
               onChange={(event) => setPlayerName(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" && playerName.trim()) {
-                  onAddPlayer({ name: playerName });
-                  setPlayerName("");
-                }
-              }}
               fullWidth
             />
             <Button
               variant="contained"
               color="secondary"
               startIcon={<SportsEsportsRounded />}
-              onClick={() => {
-                if (!playerName.trim()) return;
-                onAddPlayer({ name: playerName });
-                setPlayerName("");
-              }}
+              onClick={submitPlayer}
             >
               Lanzar a la arena
             </Button>

@@ -20,6 +20,22 @@ type RankingStore = RankingState & {
   hydrateExternalState: (state: RankingState) => void;
 };
 
+const toRankingState = (state: RankingState): RankingState => ({
+  event: state.event,
+  players: state.players,
+  updatedAt: state.updatedAt
+});
+
+const createSnapshot = (
+  state: RankingState,
+  patch: Partial<RankingState>
+): RankingState =>
+  toRankingState({
+    event: patch.event ?? state.event,
+    players: patch.players ?? state.players,
+    updatedAt: patch.updatedAt ?? state.updatedAt
+  });
+
 const createDefaultState = (): RankingState => ({
   event: {
     id: createId(),
@@ -34,8 +50,9 @@ const createDefaultState = (): RankingState => ({
 const baseState = loadState() ?? createDefaultState();
 
 const syncState = (state: RankingState) => {
-  saveState(state);
-  broadcastState(state);
+  const serializableState = toRankingState(state);
+  saveState(serializableState);
+  broadcastState(serializableState);
 };
 
 const updatePlayerCollection = (
@@ -56,15 +73,14 @@ export const useRankingStore = create<RankingStore>((set) => ({
   ...baseState,
   updateEvent: (event) =>
     set((state) => {
-      const nextState = {
-        ...state,
+      const nextState = createSnapshot(state, {
         event: {
           ...state.event,
           title: event.title.trim() || "Logic Ranking Arena",
           subtitle: event.subtitle?.trim() || ""
         },
         updatedAt: Date.now()
-      };
+      });
       syncState(nextState);
       return nextState;
     }),
@@ -77,8 +93,7 @@ export const useRankingStore = create<RankingStore>((set) => ({
   addPlayer: (input) =>
     set((state) => {
       const now = Date.now();
-      const nextState = {
-        ...state,
+      const nextState = createSnapshot(state, {
         players: sortPlayers([
           ...state.players,
           {
@@ -93,7 +108,7 @@ export const useRankingStore = create<RankingStore>((set) => ({
           }
         ]),
         updatedAt: now
-      };
+      });
       syncState(nextState);
       return nextState;
     }),
@@ -102,25 +117,26 @@ export const useRankingStore = create<RankingStore>((set) => ({
       const nextPlayers = updatePlayerCollection(state.players, (player) =>
         player.id === id ? { ...player, name: input.name.trim(), updatedAt: Date.now() } : player
       );
-      const nextState = { ...state, players: nextPlayers, updatedAt: Date.now() };
+      const nextState = createSnapshot(state, {
+        players: nextPlayers,
+        updatedAt: Date.now()
+      });
       syncState(nextState);
       return nextState;
     }),
   removePlayer: (id) =>
     set((state) => {
-      const nextState = {
-        ...state,
+      const nextState = createSnapshot(state, {
         players: state.players.filter((player) => player.id !== id),
         updatedAt: Date.now()
-      };
+      });
       syncState(nextState);
       return nextState;
     }),
   resetScores: () =>
     set((state) => {
       const now = Date.now();
-      const nextState = {
-        ...state,
+      const nextState = createSnapshot(state, {
         players: sortPlayers(
           state.players.map((player) => ({
             ...player,
@@ -133,7 +149,7 @@ export const useRankingStore = create<RankingStore>((set) => ({
           }))
         ),
         updatedAt: now
-      };
+      });
       syncState(nextState);
       return nextState;
     }),
@@ -151,7 +167,10 @@ export const useRankingStore = create<RankingStore>((set) => ({
           scoreFlashes: [...player.scoreFlashes, createFlash(delta)].slice(-3)
         };
       });
-      const nextState = { ...state, players: nextPlayers, updatedAt: now };
+      const nextState = createSnapshot(state, {
+        players: nextPlayers,
+        updatedAt: now
+      });
       syncState(nextState);
       return nextState;
     }),
@@ -168,7 +187,10 @@ export const useRankingStore = create<RankingStore>((set) => ({
             }
           : player
       );
-      const nextState = { ...state, players: nextPlayers, updatedAt: now };
+      const nextState = createSnapshot(state, {
+        players: nextPlayers,
+        updatedAt: now
+      });
       syncState(nextState);
       return nextState;
     }),
@@ -190,13 +212,15 @@ export const useRankingStore = create<RankingStore>((set) => ({
         if (player.id === id) return player;
         return player.status === "champion" ? { ...player, status: "classified" } : player;
       });
-      const nextState = { ...state, players: sortPlayers(nextPlayers), updatedAt: now };
+      const nextState = createSnapshot(state, {
+        players: sortPlayers(nextPlayers),
+        updatedAt: now
+      });
       syncState(nextState);
       return nextState;
     }),
   clearFlashes: (id) =>
     set((state) => ({
-      ...state,
       players: state.players.map((player) =>
         player.id === id ? { ...player, scoreFlashes: [] } : player
       )

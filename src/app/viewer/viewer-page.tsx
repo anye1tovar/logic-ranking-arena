@@ -8,9 +8,7 @@ import { useRankingStore } from "../../store/ranking-store";
 import styles from "./viewer-page.module.scss";
 
 export const ViewerPage = () => {
-  const event = useRankingStore((state) => state.event);
-  const players = useRankingStore((state) => state.players);
-  const clearFlashes = useRankingStore((state) => state.clearFlashes);
+  const { event, players, clearFlashes } = useRankingStore();
 
   useEffect(() => {
     const timeouts = players.flatMap((player) =>

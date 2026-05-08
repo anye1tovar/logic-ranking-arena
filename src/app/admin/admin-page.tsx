@@ -9,17 +9,19 @@ import stylesShell from "../../components/shared/shell.module.scss";
 import styles from "./admin-page.module.scss";
 
 export const AdminPage = () => {
-  const event = useRankingStore((state) => state.event);
-  const players = useRankingStore((state) => state.players);
-  const updateEvent = useRankingStore((state) => state.updateEvent);
-  const addPlayer = useRankingStore((state) => state.addPlayer);
-  const resetScores = useRankingStore((state) => state.resetScores);
-  const resetEvent = useRankingStore((state) => state.resetEvent);
-  const changePoints = useRankingStore((state) => state.changePoints);
-  const addWin = useRankingStore((state) => state.addWin);
-  const setStatus = useRankingStore((state) => state.setStatus);
-  const removePlayer = useRankingStore((state) => state.removePlayer);
-  const clearFlashes = useRankingStore((state) => state.clearFlashes);
+  const {
+    event,
+    players,
+    updateEvent,
+    addPlayer,
+    resetScores,
+    resetEvent,
+    changePoints,
+    addWin,
+    setStatus,
+    removePlayer,
+    clearFlashes
+  } = useRankingStore();
 
   useEffect(() => {
     const timeouts = players.flatMap((player) =>
