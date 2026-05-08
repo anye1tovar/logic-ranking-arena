@@ -7,6 +7,9 @@ import styles from "./leaderboard.module.scss";
 type Props = {
   players: Player[];
   admin?: boolean;
+  rankOffset?: number;
+  emptyTitle?: string;
+  emptyDescription?: string;
   onAddPoint?: (id: string, delta: number) => void;
   onAddWin?: (id: string) => void;
   onSetStatus?: (id: string, status: Player["status"]) => void;
@@ -17,8 +20,12 @@ export const Leaderboard = (props: Props) => {
   if (props.players.length === 0) {
     return (
       <div className={styles.emptyState}>
-        <Typography variant="h6">Todavía no hay jugadores en la arena</Typography>
-        <Typography>Agrega participantes desde el panel admin para empezar el ranking.</Typography>
+        <Typography variant="h6">
+          {props.emptyTitle ?? "Todavía no hay jugadores en la arena"}
+        </Typography>
+        <Typography>
+          {props.emptyDescription ?? "Agrega participantes desde el panel admin para empezar el ranking."}
+        </Typography>
       </div>
     );
   }
@@ -29,7 +36,7 @@ export const Leaderboard = (props: Props) => {
         <PlayerCard
           key={player.id}
           player={player}
-          rank={index}
+          rank={(props.rankOffset ?? 0) + index}
           admin={props.admin}
           onAddPoint={props.onAddPoint}
           onAddWin={props.onAddWin}

@@ -10,6 +10,36 @@
   top: 24px;
 }
 
+.rankingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.searchBox {
+  width: min(360px, 100%);
+}
+
+.rankingMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 14px 0 18px;
+}
+
+.resultsCount {
+  color: #cabcf4;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 @media (max-width: 1120px) {
   .layout {
     grid-template-columns: 1fr;
@@ -17,5 +47,15 @@
 
   .sticky {
     position: static;
+  }
+
+  .rankingHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .rankingMeta {
+    flex-direction: column;
+    align-items: stretch;
   }
 }
