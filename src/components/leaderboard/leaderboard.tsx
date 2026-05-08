@@ -1,12 +1,15 @@
 import { Typography } from "@mui/material";
 
 import type { Player } from "../../types/ranking";
+import type { PlayerEffectState } from "../../types/viewer-effects";
 import { PlayerCard } from "../player-card/player-card";
 import styles from "./leaderboard.module.scss";
 
 type Props = {
   players: Player[];
   admin?: boolean;
+  viewerMode?: boolean;
+  playerEffects?: Record<string, PlayerEffectState>;
   rankOffset?: number;
   emptyTitle?: string;
   emptyDescription?: string;
@@ -38,6 +41,8 @@ export const Leaderboard = (props: Props) => {
           player={player}
           rank={(props.rankOffset ?? 0) + index}
           admin={props.admin}
+          viewerMode={props.viewerMode}
+          effectState={props.playerEffects?.[player.id]}
           onAddPoint={props.onAddPoint}
           onAddWin={props.onAddWin}
           onSetStatus={props.onSetStatus}

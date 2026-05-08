@@ -1,0 +1,204 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.championBackdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(244, 197, 66, 0.22), transparent 34%),
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 18%),
+    radial-gradient(circle at 80% 24%, rgba(244, 197, 66, 0.14), transparent 22%),
+    linear-gradient(180deg, rgba(20, 10, 35, 0.08), rgba(20, 10, 35, 0.58));
+}
+
+.championCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.championBadge {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 28px 42px;
+  border-radius: 28px;
+  background: rgba(34, 21, 56, 0.68);
+  border: 1px solid rgba(244, 197, 66, 0.42);
+  box-shadow: 0 0 60px rgba(244, 197, 66, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+.trophy {
+  font-size: clamp(4rem, 8vw, 7rem);
+  filter: drop-shadow(0 0 18px rgba(244, 197, 66, 0.42));
+}
+
+.eyebrow {
+  color: #f4c542;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.84rem;
+}
+
+.championName {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.subline {
+  color: #fff2c5;
+  font-size: 1.05rem;
+}
+
+.firework {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95), rgba(244, 197, 66, 0.86) 56%, transparent 72%);
+  box-shadow:
+    0 0 22px rgba(244, 197, 66, 0.65),
+    0 0 48px rgba(244, 197, 66, 0.4);
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  border-radius: 4px;
+}
+
+.classifiedBackdrop,
+.victoryBackdrop {
+  position: absolute;
+  inset: 0;
+}
+
+.classifiedBackdrop {
+  background:
+    radial-gradient(circle at center, rgba(183, 255, 0, 0.2), transparent 28%),
+    linear-gradient(180deg, rgba(20, 10, 35, 0.04), rgba(20, 10, 35, 0.38));
+}
+
+.victoryBackdrop {
+  background:
+    radial-gradient(circle at center, rgba(244, 197, 66, 0.18), transparent 24%),
+    radial-gradient(circle at center, rgba(183, 255, 0, 0.12), transparent 32%),
+    linear-gradient(180deg, rgba(20, 10, 35, 0.02), rgba(20, 10, 35, 0.28));
+}
+
+.midCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.classifiedBadge,
+.victoryBadge {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 22px 32px;
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
+}
+
+.classifiedBadge {
+  background: rgba(25, 40, 12, 0.54);
+  border: 1px solid rgba(183, 255, 0, 0.42);
+  box-shadow: 0 0 46px rgba(183, 255, 0, 0.18);
+}
+
+.victoryBadge {
+  background: rgba(44, 32, 10, 0.54);
+  border: 1px solid rgba(244, 197, 66, 0.42);
+  box-shadow: 0 0 40px rgba(244, 197, 66, 0.18);
+}
+
+.classifiedTitle,
+.victoryTitle {
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.classifiedTitle {
+  color: #dfff88;
+}
+
+.victoryTitle {
+  color: #ffe08d;
+}
+
+.classifiedName,
+.victoryName {
+  font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+  color: #ffffff;
+}
+
+.centerShard,
+.centerSpark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center;
+}
+
+.centerShard {
+  width: 8px;
+  height: 64px;
+  border-radius: 999px;
+  filter: blur(1px);
+}
+
+.centerSpark {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  box-shadow: 0 0 18px currentColor;
+}
+
+.resetBackdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+    repeating-linear-gradient(
+      180deg,
+      rgba(183, 255, 0, 0.12) 0,
+      rgba(183, 255, 0, 0.12) 4px,
+      transparent 4px,
+      transparent 18px
+    ),
+    rgba(10, 6, 18, 0.42);
+}
+
+.resetCenter {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.resetBadge {
+  padding: 18px 28px;
+  border-radius: 22px;
+  background: rgba(34, 21, 56, 0.72);
+  border: 1px solid rgba(183, 255, 0, 0.36);
+  box-shadow: 0 0 44px rgba(183, 255, 0, 0.16);
+  color: #e6ffb6;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
