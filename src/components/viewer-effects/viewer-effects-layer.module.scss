@@ -6,6 +6,15 @@
   overflow: hidden;
 }
 
+.preloadAssets {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .championBackdrop {
   position: absolute;
   inset: 0;
@@ -36,9 +45,13 @@
   backdrop-filter: blur(14px);
 }
 
-.trophy {
-  font-size: clamp(4rem, 8vw, 7rem);
-  filter: drop-shadow(0 0 18px rgba(244, 197, 66, 0.42));
+.noxAnimation {
+  width: clamp(160px, 24vw, 320px);
+  max-width: min(52vw, 320px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 0 26px rgba(244, 197, 66, 0.36));
+  user-select: none;
 }
 
 .eyebrow {
@@ -78,7 +91,8 @@
 }
 
 .classifiedBackdrop,
-.victoryBackdrop {
+.victoryBackdrop,
+.eliminatedBackdrop {
   position: absolute;
   inset: 0;
 }
@@ -96,6 +110,13 @@
     linear-gradient(180deg, rgba(20, 10, 35, 0.02), rgba(20, 10, 35, 0.28));
 }
 
+.eliminatedBackdrop {
+  background:
+    radial-gradient(circle at center, rgba(255, 91, 132, 0.22), transparent 28%),
+    radial-gradient(circle at center, rgba(110, 24, 54, 0.16), transparent 42%),
+    linear-gradient(180deg, rgba(20, 10, 35, 0.08), rgba(20, 10, 35, 0.46));
+}
+
 .midCenter {
   position: absolute;
   inset: 0;
@@ -104,7 +125,8 @@
 }
 
 .classifiedBadge,
-.victoryBadge {
+.victoryBadge,
+.eliminatedBadge {
   display: grid;
   gap: 8px;
   justify-items: center;
@@ -125,8 +147,15 @@
   box-shadow: 0 0 40px rgba(244, 197, 66, 0.18);
 }
 
+.eliminatedBadge {
+  background: rgba(54, 13, 32, 0.58);
+  border: 1px solid rgba(255, 91, 132, 0.42);
+  box-shadow: 0 0 46px rgba(255, 91, 132, 0.2);
+}
+
 .classifiedTitle,
-.victoryTitle {
+.victoryTitle,
+.eliminatedTitle {
   font-family: "Orbitron", sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -141,8 +170,13 @@
   color: #ffe08d;
 }
 
+.eliminatedTitle {
+  color: #ff9db8;
+}
+
 .classifiedName,
-.victoryName {
+.victoryName,
+.eliminatedName {
   font-size: clamp(1.2rem, 2.8vw, 1.9rem);
   color: #ffffff;
 }

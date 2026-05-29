@@ -11,3 +11,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 coverage/
+# Local Pi runtime state
+.atl/
+.pi/
+.pi-lens/
+tmp/
+context.md

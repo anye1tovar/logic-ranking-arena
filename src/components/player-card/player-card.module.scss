@@ -236,6 +236,21 @@
   background: linear-gradient(135deg, transparent 32%, rgba(255, 91, 132, 0.12), transparent 68%);
 }
 
+.eliminationAnimation {
+  width: min(42%, 180px);
+  max-height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(255, 91, 132, 0.38));
+  opacity: 0.94;
+}
+
+.eliminationText {
+  position: absolute;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(29, 18, 49, 0.62);
+}
+
 .newPlayerBanner,
 .winBurst,
 .moveBadge {

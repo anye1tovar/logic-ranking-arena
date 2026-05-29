@@ -1,9 +1,8 @@
-export type PlayerEffectState = {
-  newPlayerTrigger?: number;
-  winTrigger?: number;
-  classifiedTrigger?: number;
-  eliminatedTrigger?: number;
-  championTrigger?: number;
-  moveTrigger?: number;
-  moveDelta?: number;
-};
+export type {
+	NamedViewerEffect,
+	PlayerEffectState,
+	ResetViewerEffect,
+	ViewerEffectDetection,
+	ViewerSoundEvent,
+	ViewerSoundType,
+} from "../features/ranking/viewer-effects/types";
